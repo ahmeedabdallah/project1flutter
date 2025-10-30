@@ -37,40 +37,52 @@ class Myapp extends StatelessWidget{
                 ],
               ),
               SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment:MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(Icons.person_outlined),
-                  Text('My profile',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                  Image(image: AssetImage('image/Vector 4.png'))
-                ],
+              Padding(
+                padding: const EdgeInsets.only(left: 20,right: 20),
+                child: Row(
+                  children: [
+                    Icon(Icons.person_outlined),
+                    Text('My profile',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                    Spacer(),
+                    Image(image: AssetImage('image/Vector 4.png'))
+                  ],
+                ),
               ),
               SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment:MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(Icons.shopping_bag_outlined),
-                  Text('My Orders',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                  Image(image: AssetImage('image/Vector 4.png'))
-                ],
+              Padding(
+                padding: const EdgeInsets.only(left: 20,right: 20),
+                child: Row(
+                  children: [
+                    Icon(Icons.shopping_bag_outlined),
+                    Text('My Orders',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                    Spacer(),
+                    Image(image: AssetImage('image/Vector 4.png'))
+                  ],
+                ),
               ),
               SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment:MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(Icons.favorite_border),
-                  Text('My Favorites',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                  Image(image: AssetImage('image/Vector 4.png'))
-                ],
+              Padding(
+                padding: const EdgeInsets.only(left: 20,right: 20),
+                child: Row(
+                  children: [
+                    Icon(Icons.favorite_border),
+                    Text('My Favorites',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                    Spacer(),
+                    Image(image: AssetImage('image/Vector 4.png'))
+                  ],
+                ),
               ),
               SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment:MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(Icons.settings),
-                  Text('Settings',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                  Image(image: AssetImage('image/Vector 4.png'))
-                ],
+              Padding(
+                padding: const EdgeInsets.only(right: 20,left: 20),
+                child: Row(
+                  children: [
+                    Icon(Icons.settings),
+                    Text('Settings',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                    Spacer(),
+                    Image(image: AssetImage('image/Vector 4.png'))
+                  ],
+                ),
               ),
               SizedBox(height: 40,),
               Row(
