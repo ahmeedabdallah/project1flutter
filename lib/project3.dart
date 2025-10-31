@@ -19,7 +19,7 @@ class Homeview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.only(right:10.0,top: 30,left: 10),
         child: Column(
           children: [
             Row(
@@ -151,7 +151,7 @@ class Homeview extends StatelessWidget {
                 Container(
                   alignment: Alignment.topRight,
                   padding: EdgeInsets.all(10),
-                  height: 80,
+                  height: 70,
                   width: 250,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -193,7 +193,7 @@ class Homeview extends StatelessWidget {
       Row(children: [
         Text('Task Groups')
       ],),
-            SizedBox(height: 18),
+            SizedBox(height: 10),
             Row(
         children: [
         Container(
