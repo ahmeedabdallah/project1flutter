@@ -1,9 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:aaa/core/height,width.dart';
-import 'package:aaa/core/color.dart';
-
 
 void main() {
   runApp(Myapp());
@@ -14,33 +10,25 @@ class Myapp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize:Size(375,812),
-      builder: (_,child){
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: HomeVew(),
-        );
-      },
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: Homeview());
   }
 }
 
-class HomeVew extends StatelessWidget {
-  const HomeVew({super.key});
+class Homeview extends StatelessWidget {
+  const Homeview({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(right:10.0,top: 30,left: 10),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             Row(
               children: [
                 Container(
-                  height: 60.r,
-                  width: 60.r,
+                  height: 50,
+                  width: 50,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
@@ -49,27 +37,28 @@ class HomeVew extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(padding: EdgeInsets.all(5.sp)),
+                Padding(padding: EdgeInsets.all(5)),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Hallo!',style: TextStyle(fontSize: 12.sp),),
+                    Text('Hallo!'),
                     Text(
                       "Ahmed Abdallah",
-                      style: TextStyle(fontWeight: FontWeight.bold,fontSize:16.sp ),
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
               ],
             ),
-            SizedBox(height: 34.h),
+            SizedBox(height: 10),
             Column(
               children: [
                 Container(
                   padding: EdgeInsets.all(10),
+                  height: 150,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.r),
+                    borderRadius: BorderRadius.circular(20),
                     color: Colors.green,
                   ),
                   child: Column(
@@ -83,14 +72,14 @@ class HomeVew extends StatelessWidget {
                         "almost done",
                         style: TextStyle(color: Colors.white),
                       ),
-                      SizedBox(height: 16.h),
+                      SizedBox(height: 18),
                       Row(
                         children: [
                           Text(
                             "80",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 40.sp,
+                              fontSize: 50,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -98,16 +87,16 @@ class HomeVew extends StatelessWidget {
                             "%",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 35.sp,
+                              fontSize: 35,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Spacer(),
                           Container(
-                            height: 36.h,
-                            width: 121.w,
+                            height: 40,
+                            width: 130,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.r),
+                              borderRadius: BorderRadius.circular(20),
                               color: Colors.white,
                             ),
                             alignment: Alignment.center,
@@ -115,7 +104,7 @@ class HomeVew extends StatelessWidget {
                               "View Tasks",
                               style: TextStyle(
                                 color: Colors.green,
-                                fontSize: 15.sp,
+                                fontSize: 15,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -125,23 +114,23 @@ class HomeVew extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 26.h),
+                SizedBox(height: 10),
                 Row(
                   children: [
                     Text(
                       "In Progress",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 14.sp,
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(width: 22.sp),
+                    SizedBox(width: 25),
                     Container(
-                      height: 23.w,
-                      width:22.w,
+                      height: 25,
+                      width: 25,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
+                        borderRadius: BorderRadius.circular(5),
                         color: Colors.greenAccent,
                       ),
                       alignment: Alignment.center,
@@ -149,7 +138,7 @@ class HomeVew extends StatelessWidget {
                         "5",
                         style: TextStyle(
                           color: Colors.green,
-                          fontSize: 15.sp,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -158,17 +147,20 @@ class HomeVew extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10.h),
-                Expanded(child: ListView(scrollDirection: Axis.horizontal,children: [ TaskGroup(name1: 'Work Task',name2: 'Add New Features',pathimage: 'image/Group 1000002858.png',backgroundcolor: Colors.black,primerycolor: Colors.white,),
-                  TaskGroup(name1: 'personal task',name2: 'Improve my English skills by trying to speek',pathimage: 'image/Group 01.png',backgroundcolor: Color(0xffCEEBDC),primerycolor: Colors.black,),
-                  TaskGroup(name1: 'Home task',name2: 'Add new feature for Do it app and commit',pathimage: 'image/Group 33.png',backgroundcolor: Color(0xffFFE4F2),primerycolor: Colors.black,)]
-
-                )),
+            SizedBox(height: 10),
+            Expanded(
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                  children: [
+                  Taskgroup(name1: "Work Task", name2: 'Add New Features', pathimage: 'image/Group 1000002858.png', backgroundcolor: Colors.black, textcolor: Colors.white),
+                  Taskgroup(name1: "personal Task", name2: 'Improve my English skills by trying to speek', pathimage: 'image/Group 01.png', backgroundcolor: Color(0xffCEEBDC), textcolor: Colors.black),
+                  Taskgroup(name1: "Work Task", name2: 'Add new feature for Do It app and commit it', pathimage: 'image/Group 33.png', backgroundcolor: Color(0xffFFE4F2), textcolor: Colors.black),],),
+            ),
             SizedBox(height: 10),
       Row(children: [
         Text('Task Groups')
       ],),
-            SizedBox(height: 10),
+            SizedBox(height: 18),
             Row(
         children: [
         Container(
@@ -287,66 +279,69 @@ class HomeVew extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Image(image: AssetImage('image/final.png'))
+
             ],)
+
           ],
         ),
       ),
     );
   }
 }
-class TaskGroup extends StatelessWidget {
-  const TaskGroup({super.key ,required this.name1,required this.name2,required this.pathimage,required this.backgroundcolor,required this.primerycolor});
- final String  name1;
-  final String  name2;
-  final String  pathimage;
+class Taskgroup extends StatelessWidget {
+  const Taskgroup({super.key,required this.name1,required this.name2, required this.pathimage,required this.backgroundcolor, required this.textcolor});
+  final String name1;
+  final String name2;
+  final String pathimage;
   final Color backgroundcolor;
-  final Color primerycolor;
+  final Color textcolor;
 
 
   @override
   Widget build(BuildContext context) {
-  return  Container(
-    margin: EdgeInsets.symmetric(horizontal: 8),
-      alignment: Alignment.topRight,
-      padding: EdgeInsets.all(10.r),
-      height: Coontainer.height.h,
-      width: Coontainer.width.w,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.r),
-        color: backgroundcolor,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+return  Container(
+  margin: EdgeInsets.symmetric(horizontal: 10),
+
+  alignment: Alignment.topRight,
+  padding: EdgeInsets.all(10),
+  height: 80,
+  width: 250,
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(20),
+    color: backgroundcolor,
+  ),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
         children: [
-          Row(
-            children: [
-              Text(
-                name1,
-                style: TextStyle(
-                  color: primerycolor,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Spacer(),
-              Image(
-                image: AssetImage(pathimage),
-              ),
-            ],
+          Text(
+            name1,
+            style: TextStyle(
+              color: textcolor,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          Row(
-            children: [
-              Flexible(
-                child: Text(
-                  name2,
-                  style: TextStyle(color:primerycolor ),
-                ),
-              ),
-            ],
+          Spacer(),
+          Image(
+            image: AssetImage(pathimage),
           ),
         ],
       ),
-      );
+      Row(
+        children: [
+          Flexible(
+            child: Text(
+              name2,
+              style: TextStyle(color: textcolor),
+            ),
+          ),
+        ],
+      ),
+    ],
+  ),
+);
   }
 }
 
