@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,9 +5,10 @@ void main (){
   runApp(Myapp());
 }
 class Myapp extends StatelessWidget{
+  const Myapp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: (_,child){
@@ -20,9 +20,10 @@ class Myapp extends StatelessWidget{
   }
 }
 class Homeview extends StatelessWidget{
+  const Homeview({super.key});
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(appBar: AppBar(leading: Padding(
       padding:  REdgeInsets.all(10),
       child: CircleAvatar(backgroundImage: AssetImage('image/GettyImages-1315607788 2.png'),radius: 50.r,),
