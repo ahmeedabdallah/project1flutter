@@ -1,41 +1,43 @@
+import 'package:aaa/feature/auth/cubit/register_cubit/register_cubit.dart';
+import 'package:aaa/feature/auth/views/login.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
-  runApp(Myapp());
-}
+import '../../../core/helper/my_navigator.dart';
+import '../cubit/register_cubit/register_state.dart';
 
-class Myapp extends StatelessWidget {
-  Myapp({super.key});
-  var formkey =GlobalKey<FormState>();
+class Register extends StatelessWidget {
+   const Register({super.key});
+   static var formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return ScreenUtilInit(
-      designSize: Size(375, 812),
-      builder: (_, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: Scaffold(
-            body: SafeArea(
-              child: Form(
-                key: formkey,
-                child: Column(
+    return Scaffold(
+      body: SafeArea(
+        child: Form(
+          key: formKey,
+          child: SingleChildScrollView(
+            child: BlocProvider(
+              create: (BuildContext context) =>RegisterCubit(),
+              child: BlocBuilder<RegisterCubit,RegisterState>(
+                builder: (context,state)=>
+                 Column(
                   children: [
-                    Container(
-                      child: Image(
-                        image: AssetImage('image/GettyImages-1315607788 2.png'),
-                        fit: BoxFit.fill,
-                        height: 200,
-                        width: double.infinity,
-                      ),
+                    Image(
+                      image: AssetImage('image/GettyImages-1315607788 2.png'),
+                      fit: BoxFit.fill,
+                      height: 200,
+                      width: double.infinity,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: TextFormField(
                         decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.green),borderRadius: BorderRadius.circular(10)),
-                          errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.lightBlue)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.green),
+                              borderRadius: BorderRadius.circular(10)),
+                          errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.lightBlue)),
                           prefixIcon: Icon(Icons.person, color: Colors.black),
                           hintText: 'username',
                           filled: true,
@@ -51,15 +53,20 @@ class Myapp extends StatelessWidget {
                         },
                       ),
                     ),
-                    Textfilled(
+                    TextField(
+                      obscure: RegisterCubit.get(context).passObscure,
+                      controller: RegisterCubit.get(context).pass,
                       name: "password",
-                      preicon: Icon(Icons.key),
-                      suficon: Icon(Icons.lock_open),
+                      prefixIcon: Icon(Icons.key),
+                      suffixIcon: IconButton(icon:Icon(Icons.lock_open),onPressed:RegisterCubit.get(context).passRegister ,),
                     ),
-                    Textfilled(
+                    TextField(
+                      obscure: RegisterCubit.get(context).confirmPassObscure,
+
+                      controller: RegisterCubit.get(context).confirmPass,
                       name: "Confirm password",
-                      preicon: Icon(Icons.key_outlined),
-                      suficon: Icon(Icons.lock),
+                      prefixIcon: Icon(Icons.key_outlined),
+                      suffixIcon: IconButton(icon:Icon(Icons.lock),onPressed:RegisterCubit.get(context).confirmPassRegister ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -69,7 +76,7 @@ class Myapp extends StatelessWidget {
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.green.withOpacity(.6),
+                              color: Colors.green.withAlpha(120),
                               offset: Offset(0, 8),
                               blurRadius: 15,
                             ),
@@ -77,7 +84,11 @@ class Myapp extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: FloatingActionButton(
-                          onPressed: (){formkey.currentState?.validate();},
+                          onPressed: () {
+                            if (formKey.currentState?.validate() ?? false) {
+                              MyNavigator.goto(context, Login());
+                            }
+                          },
                           backgroundColor: Colors.green,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
@@ -96,7 +107,10 @@ class Myapp extends StatelessWidget {
                         Text('Already Have An Account?'),
                         SizedBox(width: 10),
                         TextButton(
-                          onPressed: () {print('ok');},
+                          onPressed: () {
+                            MyNavigator.goto(context, Login(),
+                                type: NavigatorType.push);
+                          },
                           child: Text(
                             'Login',
                             style: TextStyle(
@@ -107,53 +121,45 @@ class Myapp extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
-                    RichText(
-                      text: TextSpan(
-                        style: TextStyle(color: Colors.black),
-                        children: [
-                          TextSpan(text: 'Already Have An Account?'),
-                          TextSpan(
-                            text: '   Login',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
 
-class Textfilled extends StatelessWidget {
-  const Textfilled({
+class TextField extends StatelessWidget {
+  const TextField({
     super.key,
     required this.name,
-    required this.preicon,
-    this.suficon,
+    required this.prefixIcon,
+    this.suffixIcon,
+    required this.controller,
+    required this.obscure,
   });
   final String name;
-  final Icon preicon;
-  final Icon? suficon;
+  final Icon prefixIcon;
+  final IconButton? suffixIcon;
+  final TextEditingController controller;
+  final bool obscure;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: TextFormField(
         decoration: InputDecoration(
-          prefixIcon: preicon,
-          suffixIcon: suficon,
+          prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
           hintText: name,
           filled: true,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
         ),
-        obscureText: true,
+        controller: controller,
+        obscureText: obscure,
         obscuringCharacter: '*',
       ),
     );

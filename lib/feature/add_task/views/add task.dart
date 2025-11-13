@@ -1,33 +1,16 @@
+import 'package:aaa/core/helper/my_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
-  runApp(Myapp());
-}
-class Myapp extends StatelessWidget {
-  const Myapp({super.key});
+  class AddTask extends StatefulWidget {
+  const AddTask({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
-        designSize: Size(375, 812),
-        builder: (_, child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            home: DateDropdown(),);
-        }
-    );
-  }
-}
-  class DateDropdown extends StatefulWidget {
-  const DateDropdown({super.key});
-
-  @override
-  State<DateDropdown> createState() => _DateDropdownState();
+  State<AddTask> createState() => _AddTaskState();
   }
 
 
-class _DateDropdownState extends State<DateDropdown> {
+class _AddTaskState extends State<AddTask> {
   DateTime? selectedDate;
 
   Future<void> _selectDate(BuildContext context) async {
@@ -72,7 +55,7 @@ class _DateDropdownState extends State<DateDropdown> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          leading: Icon(Icons.chevron_left),
+          leading: IconButton(icon:Icon(Icons.chevron_left),onPressed: ()=>MyNavigator.goback(context),),
           title: Text('Add Task'),
           centerTitle: true,
         ),
@@ -142,7 +125,7 @@ class _DateDropdownState extends State<DateDropdown> {
                     borderRadius: BorderRadius.circular(15.r),
                   ),
                   child: FloatingActionButton(
-                    onPressed: () => print('ok'),
+                    onPressed: () => MyNavigator.goback(context),
                     backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),

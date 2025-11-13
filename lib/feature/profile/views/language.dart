@@ -1,17 +1,14 @@
+import 'package:aaa/core/helper/my_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
-  runApp(Myapp());
-}
-
-class Myapp extends StatefulWidget {
-  const Myapp({super.key});
+class Language extends StatefulWidget {
+  const Language({super.key});
   @override
-  State<Myapp> createState() => _MyappState();
+  State<Language> createState() => _LanguageState();
 }
 
-class _MyappState extends State<Myapp> {
+class _LanguageState extends State<Language> {
    bool value =true;
   @override
   Widget build(BuildContext context) {
@@ -21,7 +18,7 @@ class _MyappState extends State<Myapp> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(
-            leading: Icon(Icons.chevron_left),
+            leading: IconButton(icon: Icon(Icons.chevron_left),onPressed:()=>MyNavigator.goback(context,) ,),
             title: Text('Settings'),
             centerTitle: true,
           ),
